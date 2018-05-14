@@ -1,0 +1,252 @@
+.custom-col-wrapper {
+    width: 100%;
+    min-width: 1500px;
+    max-width: 1500px;
+    margin: 0 auto;
+    margin-top: 40px;
+    background-color: whitesmoke;
+}
+
+.week-row .col-xs-1,
+.week-row .col-md-1,
+.week-row .col-sm-1,
+.week-row .col-lg-1 {
+    width: 14.285714285714285714285714285714%;
+    *width: 14.285714285714285714285714285714%;
+}
+
+.day-box {
+    height: 200px;
+    border: solid 1px black;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.monthTitle {
+    text-align: center;
+    background-color: lightslategray;
+    color: white;
+    font-size: 4em;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.month-row {
+    text-align: center;
+    background-color: lightslategray;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.day-of-week {
+    text-align: center;
+    font-size: 1.8em;
+    color: white;
+    background-color: lightslategray;
+    border-top: 2px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.logout {
+    width: 200px;
+    font-size: 1.5em;
+    border: 1px solid lightslategray;
+    color: black;
+}
+
+.add {
+    margin-left: 20px;
+    display: inline-block;
+    width: 200px;
+    font-size: 1.5em;
+    border: 1px solid lightslategray;
+    color: black;
+}
+
+.username {
+    display: inline-block;
+    font-size: 1.5em;
+    margin-right: 15px;
+}
+
+.logStuff {
+    text-align: right;
+    display: inline-block;
+    overflow: hidden;
+    float: right;
+}
+
+.container {
+    text-align: center;
+}
+
+.menu-row {
+    background: white;
+}
+
+.search {
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+
+
+.search:focus {
+    display: inline-block;
+    margin-top: 5px;
+    /* border: 1px solid dodgerblue; */
+    font-size: 1.5em;
+}
+
+.search-dropdown {
+    position: absolute;
+}
+
+.search-result {
+    position: relative;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    font-size: 1.4em !important;
+    width: 195px;
+    height: 40px;
+    padding: 5px;
+    background-color: white;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.search-result:hover {
+    color: #eee;
+    background-color: #607D8B;
+    z-index: 10;
+}
+
+
+.search-recipients {
+    width: 100%;
+}
+
+.search-recipients-dropdown {
+    position: absolute;
+}
+
+.search-recipients-result {
+    position: relative;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    width: 300px;
+    height: 35px;
+    padding: 5px;
+    background-color: white;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.search-recipients-result:hover {
+    color: #eee;
+    background-color: #607D8B;
+    z-index: 10;
+}
+
+.search-result-recipients span {
+    font-size: 1.0em;
+}
+
+.modal-title {
+    text-align: center;
+}
+
+#close-button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+#close-button span {
+    font-size: 1.6em;
+}
+
+.modal-body>* {
+    font-size: 1.4em;
+}
+
+.modal-body>.row {
+    margin-bottom: 8px;
+}
+
+#description {
+    resize: none;
+    width: 100%;
+}
+
+.recipient-button {
+    background: transparent;
+    border: none;
+}
+
+.recipient-button span {
+    font-size: 1.4em;
+}
+
+
+#title {
+    width: 100%;
+}
+
+.next{
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 1em;
+    opacity: .5;
+    color:black;
+    border: 2px solid lightslategray;
+}
+
+.next:hover{
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 1em;
+    opacity: 1;
+    color: black;
+}
+
+.previous{
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 1em;
+    opacity: .5;
+    color: black;
+    border: 2px solid lightslategray;
+}
+.previous:hover{
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 1em;
+    opacity: 1;
+    color: black;
+}
+
+.previousDiv{
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.nextDiv{
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+#clickPrevious {
+    height: 80%;
+}
+
+#clickNext {
+    height: 80%;
+}   

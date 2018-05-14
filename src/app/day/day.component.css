@@ -1,0 +1,122 @@
+.event-wrapper .row{
+    margin: 0;
+    margin-bottom: 4px;
+    padding: 0;
+}
+
+.day-num {
+    padding-left: 6px;
+    font-size: 1.4em;
+}
+
+.button-col {
+    display: flex;
+    justify-content: center;
+}
+
+.event-button {
+    white-space:normal !important;
+    max-width:200px;
+}
+
+.event-details-wrapper > * {
+    font-size: 1.4em;
+}
+
+.text {
+    font-size: 1.0em !important;
+}
+
+.edit-button {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.delete-button {
+    float: left;
+    margin-bottom: 10px;
+    background: red;
+    color: white;
+}
+
+.delete-button:hover {
+    background: #c50000;
+}
+
+hr {
+    margin-bottom: 10px
+}
+
+
+.search-recipients {
+    width: 100%;
+}
+
+.search-recipients-dropdown {
+    position: absolute;
+}
+
+.search-recipients-result {
+    position: relative;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    width: 300px;
+    height: 35px;
+    padding: 5px;
+    background-color: white;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.search-recipients-result:hover {
+    color: #eee;
+    background-color: #607D8B;
+    z-index: 10;
+}
+
+.search-result-recipients span {
+    font-size: 1.0em;
+}
+
+.modal-title {
+    text-align: center;
+}
+
+#close-button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+#close-button span {
+    font-size: 1.6em;
+}
+
+.modal-body>* {
+    font-size: 1.4em;
+}
+
+.modal-body>.row {
+    margin-bottom: 8px;
+}
+
+#description {
+    resize: none;
+    width: 100%;
+}
+
+.recipient-button {
+    background: transparent;
+    border: none;
+}
+
+.recipient-button span {
+    font-size: 1.4em;
+}
+
+
+#title {
+    width: 100%;
+}
+

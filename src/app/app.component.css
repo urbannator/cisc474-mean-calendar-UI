@@ -1,0 +1,13 @@
+.title_app {
+    display: inline-block;
+    margin: auto;
+    padding-top: 2%;
+    font-size: 2em;
+    float: right;
+}
+
+#bod{
+    background: linear-gradient(white, lightslategray, white);
+    min-width:1500px;
+}
+

@@ -1,0 +1,154 @@
+<div class="day-box">
+    <div *ngIf="dayNum === 0"></div>
+    <div *ngIf="dayNum > 0" class="day-num">{{ dayNum }}</div>
+    <span class='event-wrapper' *ngFor="let event of dayEvents">
+        <ng-template #content>
+            <div class="event-details-wrapper">
+                <span class="event-info-users">
+                    <b>Participants: </b>
+                    <span *ngFor="let user of event.names; index as i">
+                        <span *ngIf="event.names.length === 1">
+                            <span class="text">
+                                {{ user }}
+                            </span>
+                        </span>
+                        <span *ngIf="i < event.names.length - 1">
+                            <span class="text">
+                                {{ user }},
+                            </span>
+                        </span>
+                        <span *ngIf="i === event.names.length - 1 && event.names.length > 1">
+                            <span class="text">
+                                {{ user }}
+                            </span>
+                        </span>
+                    </span>
+                    <br>
+                </span>
+                <span class="event-info-date">
+                    <b>Date: </b>
+                    <span class="text"> {{ getWeekday() }}, {{ getMonth() }} {{ dayNum }}, {{ yearNum }}</span>
+                </span>
+                <br>
+                <span class="event-info-time">
+                    <b>Time: </b>
+                    <span class="text">{{ addColon(event.event.startTime) }} - {{ addColon(event.event.endTime) }}</span>
+                </span>
+                <br>
+                <span class="event-info-description">
+                    <b>Details: </b>
+                    <span class="text">{{ event.event.description }}</span>
+                </span>
+                <hr>
+                <span *ngIf="this.userService.loggedInUser.userId === this.userService.activeUserView">
+                    <button type="button" class="btn delete-button" (click)="deleteEventClick(event.event.eventId)" (click)="pop.hide()">Delete Event</button>
+                    <button class="btn btn-primary edit-button" data-toggle="modal" data-target="#modal-update" (click)="editEventClick(event.event.eventId)"
+                        (click)="pop.hide()">
+                        Edit Event
+                    </button>
+                </span>
+            </div>
+        </ng-template>
+        <div class="row">
+            <div class="col-lg-12 button-col">
+                <button type="button" class="btn btn-success event-button" [popover]="content" [popoverTitle]="event.event.title" container="body"
+                    [outsideClick]="true" #pop="bs-popover" placement="top">
+                    <span class="event-button-title">{{ event.event.title }}</span>
+                    <br>
+                    <span>{{ addColon(event.event.startTime) }} - {{ addColon(event.event.endTime) }}</span>
+                </button>
+            </div>
+        </div>
+    </span>
+
+    <div class="modal fade" id="modal-update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Edit Event</h2>
+                    <button id="close-button" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body container-fluid">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            Event Date:
+                        </div>
+                        <div class="col-lg-8">
+                            <input [(ngModel)]="this.eventService.eventDate" type="date" id="date">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            Start Time:
+                        </div>
+                        <div class="col-lg-8">
+                            <input [(ngModel)]="this.eventService.startTime" type="time" class="timeInput">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            End Time:
+                        </div>
+                        <div class="col-lg-8">
+                            <input [(ngModel)]="this.eventService.endTime" type="time" class="timeInput">
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-lg-4">
+                            Enter Recipients:
+                        </div>
+                        <div class="col-lg-8">
+                            <input [(ngModel)]="this.eventService.recipientSearchValue" type="text" placeholder="Search..." class="search-recipients"
+                                (keyup)="searchRecipients(this.eventService.recipientSearchValue)">
+                            <div class="search-recipients-dropdown">
+                                <div *ngFor="let user of this.eventService.searchedRecipients" (click)="addRecipient(user.fullName, user.userId)" class="search-recipients-result">
+                                    {{ user.fullName }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1">
+
+                        </div>
+                        <div class="col-lg-3">
+                            Recipients -
+                        </div>
+                        <div class="col-lg-8">
+                            <span *ngFor="let user of this.eventService.recipientList; index as i">
+                                <span>
+                                    {{ user.fullName }}
+                                    <button (click)="removeRecipient(user.userId)" class="recipient-button">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            Title:
+                        </div>
+                        <div class="col-lg-8">
+                            <input [(ngModel)]="this.eventService.title" type="text" id="title">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            Description:
+                        </div>
+                        <div class="col-lg-8">
+                            <textarea rows="4" [(ngModel)]="this.eventService.description" id="description"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="updateEventClick()" data-dismiss="modal">Update Event</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

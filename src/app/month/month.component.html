@@ -1,0 +1,154 @@
+<div class="container-fluid custom-col-wrapper">
+    <div class="row menu-row">
+        <div style="overflow:hidden;">
+            <div style="float: left;">
+                <input [(ngModel)]="searchValue" type="text" placeholder="Search..." class="search" (keyup)="search(searchValue)">
+                <div class="search-dropdown">
+                    <div *ngFor="let user of users" (click)="viewCalendar(user.userId)" class="search-result">
+                        {{ user.fullName }}
+                    </div>
+                </div>
+                <button class="add" (click)="returnHome()">My Calendar</button>                
+                <span *ngIf="this.userService.loggedInUser.userId === this.userService.activeUserView">
+                    <button class="add" data-toggle="modal" data-target="#modal" (click)="addEventClick()">Add Event</button>
+                </span>
+            </div>
+            <div class="logStuff">
+                <p class="username">{{ this.userService.loggedInUser.fullName }}</p>
+                <button class="logout" (click)="logOut()">Log Out</button>
+            </div>
+        </div>
+    </div>
+    <div class="row month-row">
+        <div class="monthTitle">
+            <div class="col-lg-1">
+
+            </div>
+            <div class="col-lg-1">
+
+            </div>
+            <div class="col-lg-1">
+                <button id="clickPrevious" class='previous' (click)="getPreviousMonth()">
+                    <span>&larr;</span>
+                </button>
+            </div>
+            <div class="col-lg-6">
+                {{ getCurrentMonthTitle()}} {{ getCurrentYearTitle()}}
+            </div>
+            <div class="col-lg-1">
+                <button id="clickNext" class='next' (click)="getNextMonth()">
+                    &rarr;
+                </button>
+            </div>
+            <div class="col-lg-1">
+
+            </div>
+            <div class="col-lg-1">
+
+            </div>
+        </div>
+    </div>
+    <div class="row week-row">
+        <span *ngFor="let day of [0, 1, 2, 3, 4, 5, 6]" class="day-of-week col-xs-1 col-lg-1 col-sm-1 col-md-1">
+            {{ getWeekDay(day) }}
+        </span>
+    </div>
+    <div *ngFor="let i of [0, 1, 2, 3, 4, 5]" class="row week-row">
+        <div *ngFor="let j of [1, 2, 3, 4, 5, 6, 7]" class="col-lg-1 col-xs-1 col-sm-1 col-md-1 day-box">
+            <app-day-component [userId]="this.userService.activeUserView" [dayNum]="monthDayArray[(7 * i) + j - 1]" [monthNum]="currentMonthNum"
+                [yearNum]="currentYearNum" [weekday]="j" [eventList]="this.eventService.userEvents"></app-day-component>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Add Event</h2>
+                    <button id="close-button" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body container-fluid">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            Event Date:
+                        </div>
+                        <div class="col-lg-8">
+                            <input [(ngModel)]="eventDate" type="date" id="date">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            Start Time:
+                        </div>
+                        <div class="col-lg-8">
+                            <input [(ngModel)]="startTime" type="time" class="timeInput">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            End Time:
+                        </div>
+                        <div class="col-lg-8">
+                            <input [(ngModel)]="endTime" type="time" class="timeInput">
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-lg-4">
+                            Enter Recipients:
+                        </div>
+                        <div class="col-lg-8">
+                            <input [(ngModel)]="recipientSearchValue" type="text" placeholder="Search..." class="search-recipients" (keyup)="searchRecipients(recipientSearchValue)">
+                            <div class="search-recipients-dropdown">
+                                <div *ngFor="let user of searchedRecipients" (click)="addRecipient(user.fullName, user.userId)" class="search-recipients-result">
+                                    {{ user.fullName }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1">
+
+                        </div>
+                        <div class="col-lg-3">
+                            Recipients -
+                        </div>
+                        <div class="col-lg-8">
+                            <span *ngFor="let user of recipientList; index as i">
+                                <span>
+                                    {{ user.fullName }}
+                                    <button (click)="removeRecipient(user.userId)" class="recipient-button">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            Title:
+                        </div>
+                        <div class="col-lg-8">
+                            <input [(ngModel)]="title" type="text" id="title">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            Description:
+                        </div>
+                        <div class="col-lg-8">
+                            <textarea rows="4" [(ngModel)]="description" id="description"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="createEventClick()" data-dismiss="modal">Create Event</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<hr>
